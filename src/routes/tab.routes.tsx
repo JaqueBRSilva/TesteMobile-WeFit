@@ -14,7 +14,7 @@ const TabNavRoutes = () => {
                 tabBarActiveTintColor: '#1976D2',
                 tabBarInactiveTintColor: '#00000099',
                 tabBarIconStyle: {
-                    paddingTop: 8,
+                    paddingTop: 7,
                     justifyContent: "center"
                 },
                 tabBarLabelStyle: {
