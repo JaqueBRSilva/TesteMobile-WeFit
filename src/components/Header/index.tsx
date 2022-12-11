@@ -1,31 +1,35 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { ArrowLeftIcon, Container, SettingsIcon, Title } from "./style";
+import { ArrowLeftButton, ArrowLeftIcon, Container, SettingsIcon, SettingsIconButton, Title } from "./style";
 
 interface IHeader {
     handlePressBackButton?: () => void;
     showBackIcon: boolean;
-    title: string;
+    titleHeader: string;
     handlePressSettingsButton?: () => void;
     showSettingIcon: boolean;
 }
 
-const Header: React.FC<IHeader> = ({ handlePressBackButton, showBackIcon, title, handlePressSettingsButton, showSettingIcon }) => {
+const Header: React.FC<IHeader> = ({ handlePressBackButton, showBackIcon, titleHeader, handlePressSettingsButton, showSettingIcon }) => {
 
     return (
         <Container>
             <StatusBar style='auto' backgroundColor='transparent' />
             {(showBackIcon == false ? ('')
                 : (
-                    <ArrowLeftIcon name="arrowleft" size={24} onPress={handlePressBackButton} />
+                    <ArrowLeftButton onPress={handlePressBackButton}>
+                        <ArrowLeftIcon name="arrowleft" size={24} />
+                    </ArrowLeftButton>
                 )
             )}
 
-            <Title>{title}</Title>
+            <Title>{titleHeader}</Title>
 
             {(showSettingIcon == false ? ('')
                 : (
-                    <SettingsIcon name="settings" size={24} onPress={handlePressSettingsButton} />
+                    <SettingsIconButton onPress={handlePressSettingsButton}>
+                        <SettingsIcon name="settings" size={24} />
+                    </SettingsIconButton>
                 )
             )}
         </Container>

@@ -10,6 +10,8 @@ export const Container = styled.SafeAreaView`
     margin-bottom: 8px;
 `;
 
+export const ArrowLeftButton = styled.TouchableOpacity``;
+
 export const ArrowLeftIcon = styled(AntDesign)`
     color: #FFF;
 `;
@@ -20,6 +22,8 @@ export const Title = styled.Text`
     color: #000;
     padding: 12px 16px;
 `;
+
+export const SettingsIconButton = styled.TouchableOpacity``;
 
 export const SettingsIcon = styled(MaterialIcons)`
     color: #000;
