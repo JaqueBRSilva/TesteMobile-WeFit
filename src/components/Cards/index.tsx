@@ -1,7 +1,9 @@
+import React from 'react';
 import { StyleSheet } from 'react-native';
 import {
     CardContainer, DotIcon,
     FavoriteButtonContainer,
+    FavText,
     HorizontalLine,
     LanguageContainer,
     LanguageName,
@@ -10,13 +12,11 @@ import {
     RepositoryName, RowFlexContainer,
     StarIcon,
     StarsContainer,
-    StarsNumber,
-    TextButton,
-    UserImage,
+    StarsNumber, UserImage,
     UserName
 } from "./style";
 
-interface ICards {
+interface ICardInfoProps {
     userPage: string;
     userImageURL: string;
     repositoryDescription: string;
@@ -25,7 +25,7 @@ interface ICards {
     goToRepoDetails: () => void;
 }
 
-const Cards: React.FC<ICards> = ({ userPage, userImageURL, repositoryDescription, numberStars, language, goToRepoDetails }) => {
+const Cards: React.FC<ICardInfoProps> = ({ userPage, userImageURL, repositoryDescription, numberStars, language, goToRepoDetails }) => {
 
     return (
         <CardContainer
@@ -54,7 +54,7 @@ const Cards: React.FC<ICards> = ({ userPage, userImageURL, repositoryDescription
             <RowFlexContainer>
                 <FavoriteButtonContainer onPress={() => { }}>
                     <StarIcon name="star-sharp" size={18} />
-                    <TextButton>Favoritar</TextButton>
+                    <FavText>Favoritar</FavText>
                 </FavoriteButtonContainer>
 
                 <StarsContainer>

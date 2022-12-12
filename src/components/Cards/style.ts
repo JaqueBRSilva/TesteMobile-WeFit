@@ -69,7 +69,7 @@ export const StarIcon = styled(Ionicons)`
     color: #FFD02C;
 `;
 
-export const TextButton = styled.Text`
+export const FavText = styled.Text`
      color: #FFD02C;
      font-size: 12px;
      font-weight: 700;
