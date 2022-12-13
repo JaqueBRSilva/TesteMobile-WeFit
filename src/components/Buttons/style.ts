@@ -9,6 +9,6 @@ export const ButtonArea = styled.TouchableOpacity`
 export const TitleButton = styled.Text`
     font-size: 15px;
     font-weight: 500;
-    padding: 8px 0px;
+    padding: 9px 0px;
     align-self: center;
 `;

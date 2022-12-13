@@ -1,3 +1,4 @@
+import React from 'react';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Favorites from "../pages/Favorites";
