@@ -42,14 +42,15 @@ export const HorizontalLine = styled.View`
 
 export const RepositoryDescription = styled.Text`
     font-size: 12px;
+    flex: 1;
     color: #9A9A9A;
-    padding: 15px 0 8px 0;
-    min-height: 30px;
+    margin: 16px 0px;
+    height: 35px;
 `;
 
 export const RowFlexContainer = styled.View`
     flex-direction: row;
-    padding: 6px 0 12px 0;
+    flex: 1;
     align-items: center;
     justify-content: space-between;
 `;
@@ -66,6 +67,7 @@ export const FavoriteButtonContainer = styled.TouchableOpacity`
 `;
 
 export const StarIcon = styled(Ionicons)`
+    flex-direction: row;
     color: #FFD02C;
 `;
 
