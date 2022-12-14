@@ -22,8 +22,17 @@ const AppRoutes: React.FC = () => (
         />
 
         <stackRoutes.Screen
-            name="Detalhes"
+            name="Details"
             component={Details}
+            options={{
+                headerShown: true,
+                headerTitle: "Detalhes",
+                headerTitleAlign: 'left',
+                headerTintColor: '#FFF',
+                headerStyle: {
+                    backgroundColor: '#000',
+                }
+            }}
         />
 
     </stackRoutes.Navigator>
