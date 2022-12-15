@@ -23,9 +23,20 @@ interface ICardInfoProps {
     numberStars: number;
     language: string | null;
     goToRepoDetails: () => void;
+    showFavoriteButton: boolean;
+    addToFavorites?: () => void;
 }
 
-const Cards: React.FC<ICardInfoProps> = ({ userPage, userImageURL, repositoryDescription, numberStars, language, goToRepoDetails }) => {
+const Cards: React.FC<ICardInfoProps> = ({
+    userPage,
+    userImageURL,
+    repositoryDescription,
+    numberStars,
+    language,
+    goToRepoDetails,
+    showFavoriteButton,
+    addToFavorites
+}) => {
 
     return (
         <CardContainer
@@ -52,14 +63,15 @@ const Cards: React.FC<ICardInfoProps> = ({ userPage, userImageURL, repositoryDes
             </RepositoryDescription>
 
             <RowFlexContainer>
-                <FavoriteButtonContainer onPress={() => { }}>
-                    <StarIcon name="star-sharp" size={18} />
-                    <FavText>Favoritar</FavText>
-                </FavoriteButtonContainer>
-
+                {showFavoriteButton && (
+                    <FavoriteButtonContainer onPress={addToFavorites}>
+                        <StarIcon name="star-sharp" size={18} />
+                        <FavText>Favoritar</FavText>
+                    </FavoriteButtonContainer>
+                )}
                 <StarsContainer>
                     <StarIcon name="star-sharp" size={18} />
-                    <StarsNumber> {numberStars} </StarsNumber>
+                    <StarsNumber> {numberStars}</StarsNumber>
                 </StarsContainer>
 
                 {language && (
