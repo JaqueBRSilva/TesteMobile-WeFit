@@ -92,8 +92,9 @@ const Home = () => {
                             repositoryDescription={item?.description}
                             numberStars={item?.stargazers_count}
                             language={item?.language}
-                            goToRepoDetails={() => handleOpenTheRepositoryDetails(item?.html_url)}
-                            addToFavorites={() => handleAddToFavorites(item?.id, item?.full_name)}
+                            showFavoriteButton={true}
+                            goToRepoDetails={() => navigation.navigate("Details", { item: item })}
+                            addToFavorites={() => handleAddToFavorites(item?.full_name)}
                         />
                     )
                 }}

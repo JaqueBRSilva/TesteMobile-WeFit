@@ -2,16 +2,21 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { Button } from 'react-native-paper';
 import { WebView } from 'react-native-webview';
-import { FeatureLanguageFromRepository, FooterButtonsView, LanguageView, LargerDotIcon, MainContent, RepoContent, RowButtonContainer, SelectedRepoDescription, SelectedRepositoryTitle } from './style';
+import {
+  FeatureLanguageFromRepository,
+  FooterButtonsView,
+  LanguageView,
+  LargerDotIcon,
+  MainContent,
+  RepoContent,
+  RowButtonContainer,
+  SelectedRepoDescription,
+  SelectedRepositoryTitle
+} from './style';
 
-interface IDataReceived {
-  repoTitle: string;
-  repoDescription: string;
-  featureLanguage: string;
-}
+const Details = ({ route }) => {
 
-const Details: React.FC<IDataReceived> = ({ repoTitle, repoDescription, featureLanguage }) => {
-
+  const repoData = route.params.item;
   const [isFavorite, setIsFavorite] = useState(false)
   const [favRepo, setFavRepo] = useState()
   const [favoriteItem, setFavoriteItem] = useState([])
@@ -27,19 +32,21 @@ const Details: React.FC<IDataReceived> = ({ repoTitle, repoDescription, featureL
       <StatusBar style='light' />
       <RepoContent>
         <SelectedRepositoryTitle>
-          {repoTitle}
+          {repoData?.full_name}
         </SelectedRepositoryTitle>
 
         <SelectedRepoDescription>
-          {repoDescription}
+          {repoData?.description}
         </SelectedRepoDescription>
 
-        <LanguageView>
-          <LargerDotIcon name="dot-fill" size={26} />
-          <FeatureLanguageFromRepository>
-            {featureLanguage}
-          </FeatureLanguageFromRepository>
-        </LanguageView>
+        {repoData?.language && (
+          <LanguageView>
+            <LargerDotIcon name="dot-fill" size={26} />
+            <FeatureLanguageFromRepository>
+              {repoData?.language}
+            </FeatureLanguageFromRepository>
+          </LanguageView>
+        )}
       </RepoContent>
 
       <FooterButtonsView>
@@ -51,7 +58,6 @@ const Details: React.FC<IDataReceived> = ({ repoTitle, repoDescription, featureL
             onPress={() => handleOpenToRepositoryPage(repoTitle)}
             icon="link" // size 26
             contentStyle={{ flexDirection: 'row-reverse' }}
-            labelStyle={{}}
             style={{
               height: 42,
               alignContent: 'center',
@@ -85,6 +91,7 @@ const Details: React.FC<IDataReceived> = ({ repoTitle, repoDescription, featureL
             <Button
               mode="outlined"
               textColor='#000'
+              buttonColor='#FFF'
               onPress={() => setIsFavorite(!isFavorite)}
               icon="star-outline" // size 26
               contentStyle={{ flexDirection: 'row-reverse' }}
