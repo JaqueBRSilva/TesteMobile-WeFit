@@ -1,5 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack/lib/typescript/src/types";
 import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Cards from "../../components/Cards";
@@ -12,7 +13,7 @@ const Favorites = () => {
     const [removeItem, setRemoveItem] = useState([]);
     const [storageFavList, setStorageFavList] = useState([]);
 
-    const navigation = useNavigation();
+    const navigation = useNavigation<NativeStackNavigationProp<any>>();
 
     const handleNavigateForRepoTab = () => {
         navigation.goBack()
@@ -54,7 +55,7 @@ const Favorites = () => {
                             numberStars={item?.stargazers_count}
                             language={item?.language}
                             showFavoriteButton={false}
-                            goToRepoDetails={() => { }}
+                            goToRepoDetails={() => navigation.navigate("Details", { item: item })}
                         />
                     )
                 }}
