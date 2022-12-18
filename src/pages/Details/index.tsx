@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
+import { Linking } from 'react-native';
 import { Button } from 'react-native-paper';
-import { WebView } from 'react-native-webview';
 import {
   FeatureLanguageFromRepository,
   FooterButtonsView,
@@ -17,14 +17,13 @@ import {
 const Details = ({ route }) => {
 
   const repoData = route.params.item;
+
   const [isFavorite, setIsFavorite] = useState(false)
   const [favRepo, setFavRepo] = useState()
   const [favoriteItem, setFavoriteItem] = useState([])
 
-  const handleOpenToRepositoryPage = (fullName) => {
-    return (
-      <WebView source={{ uri: `https://github.com/${fullName}` }} />
-    )
+  const handleOpenToRepositoryPage = (htmlURL: string) => {
+    Linking.openURL(`${htmlURL}`)
   }
 
   return (
@@ -55,8 +54,8 @@ const Details = ({ route }) => {
             mode="text"
             textColor='#1976D2'
             buttonColor='#FFF'
-            onPress={() => handleOpenToRepositoryPage(repoTitle)}
-            icon="link" // size 26
+            onPress={() => handleOpenToRepositoryPage(repoData?.html_url)}
+            icon="link"
             contentStyle={{ flexDirection: 'row-reverse' }}
             style={{
               height: 42,
@@ -76,7 +75,7 @@ const Details = ({ route }) => {
               textColor='#000'
               buttonColor='#FFD02C'
               onPress={() => setIsFavorite(true)}
-              icon="star" // size 26
+              icon="star"
               contentStyle={{ flexDirection: 'row-reverse' }}
               style={{
                 height: 42,
@@ -93,7 +92,7 @@ const Details = ({ route }) => {
               textColor='#000'
               buttonColor='#FFF'
               onPress={() => setIsFavorite(!isFavorite)}
-              icon="star-outline" // size 26
+              icon="star-outline"
               contentStyle={{ flexDirection: 'row-reverse' }}
               style={{
                 height: 42,
