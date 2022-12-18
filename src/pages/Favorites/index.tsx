@@ -10,6 +10,7 @@ const Favorites = () => {
 
     const [favoritesListItem, setFavoritesListItem] = useState([]);
     const [removeItem, setRemoveItem] = useState([]);
+    const [storageFavList, setStorageFavList] = useState([]);
 
     const navigation = useNavigation();
 
@@ -18,15 +19,19 @@ const Favorites = () => {
     }
 
     const getStoredRepositories = async () => {
-        const reposListed = await AsyncStorage.getItem("@fav_repo")
 
+        const getRepos = await AsyncStorage.getItem("@WeFit_FavRepo")
+
+        const output = JSON.parse(getRepos)
+
+        setStorageFavList(output)
     }
 
     useEffect(() => {
 
         getStoredRepositories()
 
-    }, [favoritesListItem])
+    }, [storageFavList])
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
@@ -38,12 +43,12 @@ const Favorites = () => {
             />
 
             <CardsList
-                data={favoritesListItem}
+                data={storageFavList}
                 renderItem={({ item, index }) => {
                     return (
                         <Cards
                             key={`${item.id}-${index}`}
-                            userPage={item?.repoListed}
+                            userPage={item?.full_name}
                             userImageURL={item?.owner?.avatar_url}
                             repositoryDescription={item?.description}
                             numberStars={item?.stargazers_count}

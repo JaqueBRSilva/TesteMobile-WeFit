@@ -23,10 +23,10 @@ export type GitInfosProps = {
 const Home = () => {
     const [gitProfile, setGitProfile] = useState<GitInfosProps[] | undefined>();
     const [showUsernameModal, setShowUsernameModal] = useState(false);
+    const [storageDataList, setStorageDataList] = useState([]);
     const [removeRepository, setRemoveRepository] = useState(0);
 
     const navigation = useNavigation();
-
 
     const onOpenModal = () => {
         setShowUsernameModal(true)
@@ -52,24 +52,26 @@ const Home = () => {
         }
     }
 
-    const handleOpenTheRepositoryDetails = (repoData: GitInfosProps) => {
-        navigation.navigate('Details', { repoData })
+    const handleAddToFavorites = async (repoSelected: GitInfosProps) => {
+        try {
+            storageDataList.push(repoSelected)
+            const output = JSON.stringify(storageDataList)
+            await AsyncStorage.setItem('@WeFit_FavRepo', output)
 
-    }
-
-    const handleAddToFavorites = async (repoID: GitInfosProps) => {
-        AsyncStorage.setItem('@fav_repo', JSON.stringify(repoID))
-
+        } catch (error: any) {
+            Alert.alert(
+                'Ocorreu um erro',
+                'Por favor, tente novamente em alguns instantes ou verifique se o card já foi adicionado aos Favoritos'
+            )
+        }
     }
 
     useEffect(() => {
-
         if (showUsernameModal) {
             onOpenModal()
         } else {
             setShowUsernameModal(false)
         }
-
     }, [showUsernameModal])
 
     return (
@@ -94,7 +96,7 @@ const Home = () => {
                             language={item?.language}
                             showFavoriteButton={true}
                             goToRepoDetails={() => navigation.navigate("Details", { item: item })}
-                            addToFavorites={() => handleAddToFavorites(item?.full_name)}
+                            addToFavorites={() => handleAddToFavorites(item)}
                         />
                     )
                 }}
