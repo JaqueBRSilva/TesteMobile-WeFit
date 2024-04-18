@@ -81,7 +81,7 @@
 <br/>
 
 ## 🔓 LICENÇA
-### 👉 [MIT](./LICENSE.md)
+### 👉 [MIT](./LICENSE)
 _Uma licença permissiva curta e simples com condições que exigem apenas a preservação de direitos autorais e avisos de licença. Obras licenciadas, modificações e obras maiores podem ser distribuídas em termos diferentes e sem código-fonte._
 
 **Permissões** <br>
