@@ -2,15 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Modal, TouchableWithoutFeedback } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import GestureRecognizer from 'react-native-swipe-gestures';
-import { GitInfosProps } from '../../pages/Home';
+import { GitInfosProps } from '../../types/git_infos';
+import { ISearchProfileProps } from '../../types/search_profile';
 import Buttons from '../Buttons';
 import { ButtonsContainer, DarkModalBackground, DescriptionText, DraggableItem, ModalContent } from './style';
-
-interface ISearchProfileProps {
-  visible: boolean;
-  onClose: () => void;
-  profileName: (user: GitInfosProps) => void;
-}
 
 const SearchProfileModal: React.FC<ISearchProfileProps> = ({ visible, onClose, profileName }) => {
 

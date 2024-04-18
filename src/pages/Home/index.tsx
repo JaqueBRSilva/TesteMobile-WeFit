@@ -8,21 +8,12 @@ import Cards from "../../components/Cards";
 import Header from "../../components/Header";
 import SearchProfileModal from "../../components/SearchProfileModal";
 import { api } from "../../services/api";
+import { GitInfosProps } from "../../types/git_infos";
 import { CardsList } from "./style";
 
-export type GitInfosProps = {
-    full_name: string;
-    owner: {
-        avatar_url: string;
-    }
-    description: string;
-    stargazers_count: number;
-    language: string;
-    html_url: string;
-}
 
 const Home = () => {
-    const [gitProfile, setGitProfile] = useState<GitInfosProps[] | undefined>();
+    const [gitProfile, setGitProfile] = useState<GitInfosProps>();
     const [showUsernameModal, setShowUsernameModal] = useState(false);
     const [storageDataList, setStorageDataList] = useState([]);
     const [removeRepository, setRemoveRepository] = useState(0);
